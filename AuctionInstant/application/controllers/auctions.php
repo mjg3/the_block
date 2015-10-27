@@ -3,7 +3,14 @@
 class Auctions extends CI_Controller {
 
 	public function index() {
-		$this->load->view('login');
+		if($this->session->userdata('logged_in') == true)
+		{
+			$this->load->view('auction');
+		}
+		else
+		{
+			$this->load->view('login');
+		}
 	}
 }
 
