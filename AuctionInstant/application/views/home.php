@@ -20,6 +20,7 @@
 <body>
 <nav>
     <div class="nav-wrapper">
+        <h1>Hello!</h1>
       <a href="#" class='brand-logo center' id="getting-started"></a>
    	  <a href="#" class='left' id="getting-started">Instant Auction</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -31,7 +32,7 @@
   </nav>
 <div id="getting-started"></div>
 
-	
+
 </body>
 
 
