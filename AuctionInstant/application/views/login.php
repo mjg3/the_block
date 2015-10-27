@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<?php $this->load->view('stuff'); ?>
+	<?php $this->load->view('/partials/meta'); ?>
 
 	<style type="text/css">
 	.container {
