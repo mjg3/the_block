@@ -39,6 +39,11 @@
 */
 
 $route['default_controller'] = "Auctions";
+$route['/auction'] = "Auctions/auction";
+$route['/faq'] = "Users/faq";
+$route['/dash'] = "Users/dash";
+$route['/logout'] = "Users/logout";
+
 $route['404_override'] = '';
 
 

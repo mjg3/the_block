@@ -1,8 +1,9 @@
 <html>
 	<head>
-	<?php
-		$this->load->view('/partials/meta');
-	?>
+		<title>Login/Registration</title>
+		<?php
+			$this->load->view('/partials/meta');
+		?>
 	</head>
 	<body class="teal darken-2">
 		<div class="container">
