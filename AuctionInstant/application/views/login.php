@@ -4,72 +4,82 @@
 		$this->load->view('/partials/meta');
 	?>
 	</head>
-	<body>
+	<body class="teal darken-2">
 		<div class="container">
 			<div class="row">
-				<div class="col m4 offset-m4">
+				<div class="col s12">
+					<img class="main_logo" src="/assets/images/temp_logo.gif" alt="no photo" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="col s12 col m6 offset-m3">
 					<?php
 						$this->load->view('partials/flash_messages.php');
 					?>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col s12 col m4 offset-m4">
-					<div class="panel panel-login">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col s6 center">
-									<a href="#" class="active" id="register-form-link">Register</a>
-								</div>
-								<div class="col s6 center">
-									<a href="#" id="login-form-link">Login</a>
-								</div>
-							</div>
+			<div class="row card z-depth-5">
+				<div class="col s12 col m6 offset-m3">
+					<div class="row">
+						<div class="col s6 center">
+							<a class="active pink-text text-lighten-2 big" id="register-form-link">Register</a>
 						</div>
-						<div class="panel-body">
-							<div class="row">
-								<div class="col-lg-12">
-									<form id="register-form" action="/users/register" method="post" role="form" style="display: block;">
-										<div class="form-group">
-											<input type="text" name="first_name" id="first_name" tabindex="1" class="form-control" placeholder="First Name" value="">
-										</div>
-										<div class="form-group">
-											<input type="text" name="last_name" id="last_name" tabindex="1" class="form-control" placeholder="Last Name" value="">
-										</div>
-										<div class="form-group">
-											<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email Address" value="">
-										</div>
-										<div class="form-group">
-											<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-										</div>
-										<div class="form-group">
-											<input type="password" name="confirm_password" id="confirm_password" tabindex="2" class="form-control" placeholder="Confirm Password">
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-sm-6 col-sm-offset-3">
-													<input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Register Now">
-												</div>
-											</div>
-										</div>
-									</form>
-									<form id="login-form" action="/users/login" method="post" role="form" style="display: none;">
-										<div class="form-group">
-											<input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Email" value="">
-										</div>
-										<div class="form-group">
-											<input type="password" name="password" id="password" tabindex="2" class="form-control" placeholder="Password">
-										</div>
-										<div class="form-group">
-											<div class="row">
-												<div class="col-sm-6 col-sm-offset-3">
-													<input type="submit" name="login-submit" id="login-submit" tabindex="4" class="form-control btn btn-login" value="Log In">
-												</div>
-											</div>
-										</div>
-									</form>
+						<div class="col s6 center">
+							<a class="pink-text text-darken-3 big" id="login-form-link">Login</a>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col s12">
+							<form id="register-form" action="/users/register" method="post" role="form" style="display: block;">
+								<div class="input-field">
+									<label for="first_name">First Name</label>
+									<input type="text" name="first_name" id="first_name" class="validate"/>
 								</div>
-							</div>
+								<div class="input-field">
+									<label for="last_name">Last Name</label>
+									<input type="text" name="last_name" id="last_name" class="validate"/>
+								</div>
+								<div class="input-field">
+									<label for="email">Email</label>
+									<input type="email" name="email" id="email" class="validate"/>
+								</div>
+								<div class="input-field">
+									<label for="password">Password</label>
+									<input type="password" name="password" id="password" class="validate"/>
+								</div>
+								<div class="input-field">
+									<label for="confirm_password">Confirm Password</label>
+									<input type="password" name="confirm_password" id="confirm_password" class="validate"/>
+								</div>
+								<div class="input-field">
+									<div class="row">
+										<div class="col s6 offset-s6 col m5 offset-m7 col l5 offset-l7">
+											<button class="btn pink lighten-2" type="submit" name="action">Register
+											    <i class="material-icons right">send</i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							<form id="login-form" action="/users/login" method="post" role="form" style="display: none;">
+								<div class="input-field">
+									<label for="email">Email</label>
+									<input type="email" name="email" id="email" class="validate"/>
+								</div>
+								<div class="input-field">
+									<label for="password">Password</label>
+									<input type="password" name="password" id="password" class="validate"/>
+								</div>
+								<div class="input-field">
+									<div class="row">
+										<div class="col s6 offset-s6 col m5 offset-m7 col l5 offset-l7">
+											<button class="btn pink lighten-2" type="submit" name="action">Login
+											    <i class="material-icons right">send</i>
+											</button>
+										</div>
+									</div>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
