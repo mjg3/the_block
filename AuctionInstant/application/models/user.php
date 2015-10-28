@@ -46,11 +46,11 @@
 		//make sure user is unique and matches database before logging in
 		public function login($email, $password)
 		{
-		    $this -> db -> select('email', 'password', 'id');
-		    $this -> db -> from('users');
-		    $this -> db -> where('email', $email);
-		    $this -> db -> where('password', md5($password));
-		    $this -> db -> limit(1);
+		    $this->db->select('email', 'password', 'id');
+		    $this->db->from('users');
+		    $this->db->where('email', $email);
+		    $this->db->where('password', md5($password));
+		    $this->db->limit(1);
 
 		    $query = $this -> db -> get();
 
@@ -63,8 +63,25 @@
 		    	return false;
 		    }
 		}
+		public function add_user($user_info) {
+		$query = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+		$values = [$user_info['first_name'], $user_info["last_name"], $user_info['email'], $user_info['password'], '0'];
+		return $this->db->query($query, $values);
+	}
+
+	//get user for showing purposes
+	public function get_user_by_email($email){
+		return $this->db->query("SELECT first_name, last_name, email, user_id
+								FROM users
+								WHERE email =?", $email)->row_array();
+	}
+	public function get_user_by_id($user_id) {
+		return $this->db->query("SELECT first_name, last_name, email, user_id,
+								FROM users
+								WHERE user_id=?", $user_id)->row_array();
+	}
 		public function purchased_product($winner_id) {
-			// won products will be a list of all proudcts that a user has been the last 
+			// won products will be a list of all proudcts that a user has been the last
 			// bidder on.
 			$won_products =
 			$this->db->get_where('products',
@@ -82,6 +99,17 @@
 			return $sold_products;
 		}
 
+		public function update_billing($stripe_id, $user_id) {
+			$billing_info = array('stripe_id' => $stripe_id);
+			$this->db->where('id', $user_id);
+			$this->db->update('users', $billing_info);
+
 	}
+		public function get_customer_id($user_id){
+			$customer_info = $this->db->get_where('users', array('id' => $user_id))->result_array();
+			$customer_id   = $customer_info[0]['stripe_id'];
+			return $customer_id;
+		}
+}
 
 ?>
