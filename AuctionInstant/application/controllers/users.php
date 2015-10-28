@@ -6,7 +6,7 @@
 		{
 			parent:: __construct();
 			// $this->output->enable_profiler(TRUE);
-			$this->load->model("users");
+			$this->load->model("user");
 		}
 
 		public function index() {
@@ -90,6 +90,30 @@
 		    	return false;
 		    }
 		}
+
+		public function all_products(){
+			// We'll need to load the user products model, and get all
+			// products where the buyer id is equal to our session id.
+			$this->load->library('session');
+			$this->session->set_userdata('id', 9);
+			$this->load->model('user');
+			$winner_id = $this->session->userdata('id');
+			$won_products = $this->user->purchased_product($winner_id);
+			// After we've assembled the purcahsed products,
+			// we'll want to find all products where the seller id
+			// is equal to our current user's id
+			$seller_id = $winner_id;
+			$sold_products = $this->user->sold_product($seller_id);
+
+			// We're going to pass both of these arrays in a shield array
+			$shield = array(
+				'won_products' => $won_products,
+				'sold_products'   => $sold_products
+			);
+
+			$this->load->view('test', $shield);
+		}
+
 
 	}
 

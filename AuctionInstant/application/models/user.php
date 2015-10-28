@@ -63,6 +63,25 @@
 		    	return false;
 		    }
 		}
+		public function purchased_product($winner_id) {
+			// won products will be a list of all proudcts that a user has been the last 
+			// bidder on.
+			$won_products =
+			$this->db->get_where('products',
+			array('bidder_id' => $winner_id))->result_array();
+
+			return $won_products;
+		}
+
+		public function sold_product($seller_id) {
+			// sold products will be a list of all proudcts that a user has sold
+			$sold_products =
+			$this->db->get_where('products',
+			array('seller_id' => $seller_id))->result_array();
+
+			return $sold_products;
+		}
+
 	}
 
 ?>
