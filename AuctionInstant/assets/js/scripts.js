@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+//Login/Registration scripts
     $('#login-form-link').click(function(e) {
         $("#login-form").delay(100).fadeIn(100);
         $("#register-form").fadeOut(100);
@@ -24,4 +25,11 @@ $(document).ready(function(){
         e.preventDefault();
     });
 
+//Countdown Timer
+    $(document).ready(function(){
+        var timeEnd = "2015/10/30 10:00:00";
+        $("#clock").countdown(timeEnd, function(event) {
+            $(this).html(event.strftime('Time Remaining: %D Days %H:%M:%S'));
+        });
+    });
 });

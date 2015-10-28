@@ -72,7 +72,7 @@
 		    	redirect("/");
 		    }
 		}
-		
+
 		function check_database($email)
 		{
 		    $email = $this->input->post('email');
@@ -90,7 +90,6 @@
 		    	return false;
 		    }
 		}
-
 	}
 
 ?>
