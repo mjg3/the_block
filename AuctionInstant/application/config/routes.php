@@ -38,8 +38,8 @@
 |
 */
 
-$route['default_controller'] = "Auctions";
-$route['/auction'] = "Auctions/auction";
+$route['default_controller'] = "Users";
+$route['/auction'] = "Auctions";
 $route['/faq'] = "Users/faq";
 $route['/dash'] = "Users/dash";
 $route['/logout'] = "Users/logout";

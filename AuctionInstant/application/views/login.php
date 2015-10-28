@@ -5,11 +5,11 @@
 			$this->load->view('/partials/meta');
 		?>
 	</head>
-	<body class="teal darken-2">
+	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col s12">
-					<img class="main_logo" src="/assets/images/temp_logo.gif" alt="no photo" />
+				<div class="col s12 center">
+					<img class="main_logo" src="/assets/images/hammer.gif" alt="no photo" />
 				</div>
 			</div>
 			<div class="row">
@@ -23,10 +23,10 @@
 				<div class="col s12 col m6 offset-m3">
 					<div class="row">
 						<div class="col s6 center">
-							<a class="active pink-text text-lighten-2 big" id="register-form-link">Register</a>
+							<a class="active red-text text-darken-3 big" id="register-form-link">Register</a>
 						</div>
 						<div class="col s6 center">
-							<a class="pink-text text-darken-3 big" id="login-form-link">Login</a>
+							<a class="red-text text-lighten-2 big" id="login-form-link">Login</a>
 						</div>
 					</div>
 					<div class="row">
@@ -55,7 +55,7 @@
 								<div class="input-field">
 									<div class="row">
 										<div class="col s6 offset-s6 col m5 offset-m7 col l5 offset-l7">
-											<button class="btn pink lighten-2" type="submit" name="action">Register
+											<button class="btn red darken-3" type="submit" name="action">Register
 											    <i class="material-icons right">send</i>
 											</button>
 										</div>
@@ -74,7 +74,7 @@
 								<div class="input-field">
 									<div class="row">
 										<div class="col s6 offset-s6 col m5 offset-m7 col l5 offset-l7">
-											<button class="btn pink lighten-2" type="submit" name="action">Login
+											<button class="btn red darken-3" type="submit" name="action">Login
 											    <i class="material-icons right">send</i>
 											</button>
 										</div>
@@ -85,8 +85,6 @@
 					</div>
 				</div>
 			</div>
-
-
 		</div> <!--End of main container-->
 	</body>
 </html>

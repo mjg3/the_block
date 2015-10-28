@@ -12,11 +12,11 @@
 		public function index() {
 			if($this->session->userdata('logged_in') == true)
 			{
-				$this->load->view('auction');
+				redirect('/auctions');
 			}
 			else
 			{
-				$this->load->view('login');
+				$this->load->view('stripe_registration');
 			}
 		}
 
@@ -114,7 +114,9 @@
 			$this->load->view('test', $shield);
 		}
 
-
+		public function faq(){
+			$this->load->view('faq');
+		}
 	}
 
 ?>
