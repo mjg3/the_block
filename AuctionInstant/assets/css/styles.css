@@ -1,4 +1,29 @@
-a:active
+.main_logo
 {
-    color: teal;
+    width: 200px;
+    margin-top: 20px;
+    margin-bottom: -20px;
+}
+.card
+{
+    padding-top: 20px;
+}
+.big
+{
+        font-size: 2em;
+}
+.pink-text
+{
+    color: #ee6e73;
+}
+
+.pink
+{
+    background-color: #ee6e73;
+}
+
+
+a:hover
+{
+    cursor: pointer;
 }
