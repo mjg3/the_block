@@ -18,9 +18,27 @@ body
 }
 .small_logo
 {
-    width: 90px;
+    width: 100px;
     height: auto;
-    margin: 10px 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.bump_right
+{
+    margin-left: 40px;
+}
+.profile_img
+{
+    max-width: 100px;
+    height: auto;
+}
+.profile_info
+{
+    margin-top: 50px;
+}
+.weight-lighten
+{
+    font-weight: lighter;
 }
 .card
 {

@@ -4,7 +4,7 @@
 
 		public function __construct(){
 			parent:: __construct();
-			
+
 		}
 
 		//validate registration
@@ -72,14 +72,14 @@
 
 	//get user for showing purposes
 	public function get_user_by_email($email){
-		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id
+		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at, rating
 								FROM users
 								WHERE email =?", $email)->row_array();
 	}
 	public function get_user_by_id($user_id) {
-		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id
+		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at, rating
 								FROM users
-								WHERE user_id=?", $user_id)->row_array();
+								WHERE id=?", $user_id)->row_array();
 	}
 		public function purchased_product($winner_id) {
 			// won products will be a list of all proudcts that a user has been the last

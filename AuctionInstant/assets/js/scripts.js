@@ -57,10 +57,8 @@ $(document).ready(function(){
         }
     };
 
-
-
 //Countdown Timer
-    var timeEnd = "2015/10/28 20:00:00";
+    var timeEnd = "2015/10/29 18:00:00";
     $("#clock").countdown(timeEnd, function(event) {
         $(this).html(event.strftime(' Time Left: %H:%M:%S'));
     });

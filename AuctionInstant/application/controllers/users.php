@@ -123,6 +123,18 @@
 		public function faq(){
 			$this->load->view('faq');
 		}
+
+		public function dash(){
+			$user_info = $this->user->get_user_by_id($this->session->userdata('id'));
+			$data = ['user_info'=>$user_info];
+			$this->load->view('dash', $data);
+		}
+
+		public function profile(){
+			$user_info = $this->user->get_user_by_id($this->session->userdata('id'));
+			$data = ['user_info'=>$user_info];
+			$this->load->view('profile', $data);
+		}
 	}
 
 ?>

@@ -10,23 +10,23 @@
         <div class="container">
             <nav>
                 <div class="nav-wrapper red darken-3">
-                    <a href="/auction"><img class="brand-logo left small_logo" src="/assets/images/hammer.gif"/></a>
+                    <a href="/"><img class="brand-logo left small_logo" src="/assets/images/hammer.gif"/></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="/faq">FAQ</a></li>
-                        <li><a href="/auction">Auction</a></li>
-                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/users/faq">FAQ</a></li>
+                        <li><a href="/">Auction</a></li>
+                        <li><a href="/users/logout">Logout</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
-                        <li><a href="/faq">FAQ</a></li>
-                        <li><a href="/dash/1">Your Dash</a></li>
-                        <li><a href="/logout">Logout</a></li>
+                        <li><a href="/users/faq">FAQ</a></li>
+                        <li><a href="/">Auction</a></li>
+                        <li><a href="/users/logout">Logout</a></li>
                     </ul>
                 </div>
             </nav> <!-- End of Nav Bar-->
             <div class="row">
                 <div class="col s 12">
-                    <h5>Welcome, 'logged in first_name'</h5>
+                    <h5>Welcome, <a href="/users/profile"><?=$user_info['first_name']?></a></h5>
                 </div>
             </div> <!-- End Welcome Header-->
             <div class="row">

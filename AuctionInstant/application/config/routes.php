@@ -40,9 +40,9 @@
 
 $route['default_controller'] = "users";
 $route["/users/logout"] = "users/logout";
-$route['/auction'] = "Auctions";
-$route['/faq'] = "Users/faq";
-$route['/dash'] = "Users/dash";
+$route['/users/auction'] = "users";
+$route['/users/faq'] = "users/faq";
+$route['/users/dash/'] = "users/dash/";
 
 $route['404_override'] = '';
 
