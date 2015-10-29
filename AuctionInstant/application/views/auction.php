@@ -9,16 +9,16 @@
         <div class="container">
             <nav>
                 <div class="nav-wrapper red darken-3">
-                    <a href="/auction"><img class="brand-logo left small_logo" src="/assets/images/hammer.gif"/></a>
+                    <a href="/"><img class="brand-logo left small_logo bump_right" src="/assets/images/hammer.gif"/></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
-                        <li><a href="users/faq">FAQ</a></li>
-                        <li><a href="users/dash/1">Your Dash</a></li>
+                        <li><a href="/users/faq">FAQ</a></li>
+                        <li><a href="/users/dash">Your Dash</a></li>
                         <li><a href="/users/logout">Logout</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
-                        <li><a href="/faq">FAQ</a></li>
-                        <li><a href="/dash/1">Your Dash</a></li>
+                        <li><a href="/users/faq">FAQ</a></li>
+                        <li><a href="/users/dash">Your Dash</a></li>
                         <li><a href="/users/logout">Logout</a></li>
                     </ul>
                 </div>
@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="col s12 col m5 offset-m1">
-                    <img id="feature_img" class="responsive-img" src="/assets/images/feature_product.gif" alt="No Photo"/>
+                    <img id="feature_img" class="responsive-img" src="/assets/images/featur_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/>
 
                 </div>
                 <div class="col s12 col m5">
