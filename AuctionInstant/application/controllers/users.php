@@ -5,13 +5,13 @@
 		public function __construct()
 		{
 			parent:: __construct();
-			// $this->output->enable_profiler(TRUE);
+			$this->output->enable_profiler(TRUE);
 			$this->load->model("user");
 		}
 
 		public function index() {
 			if($this->session->userdata('logged_in') == true &&
-			$this->session->userdata['stripe_id'] != null )
+			$this->session->userdata['stripe_id'] !== null )
 			{
 				$this->load->view('auction');
 			}

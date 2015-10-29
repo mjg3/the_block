@@ -4,46 +4,6 @@
 		<?php
 			$this->load->view('/partials/meta');
 		?>
-				<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-				<title>Stripe Getting Started Form</title>
-				<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-				<!-- jQuery is used only for this example; it isn't required to use Stripe -->
-				<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-				<script type="text/javascript">
-
-
-						function stripeResponseHandler(status, response) {
-							var $form = $('#payment-form');
-
-							if (response.error) {
-								// Show the errors on the form
-								$form.find('.payment-errors').text(response.error.message);
-								$form.find('button').prop('disabled', false);
-							} else {
-								// response contains id and card, which contains additional card details
-								var token = response.id;
-								// Insert the token into the form so it gets submitted to the server
-								$form.append($('<input type="hidden" name="stripeToken" />').val(token));
-								// and submit
-								$form.get(0).submit();
-							}
-						};
-								jQuery(function($) {
-								$('#payment-form').submit(function(event) {
-									// this identifies your website in the createToken call below
-									Stripe.setPublishableKey('pk_test_TDsy5q9d81vbIu1BSfaZ12cF');
-									var $form = $(this);
-
-									// Disable the submit button to prevent repeated clicks
-									$form.find('button').prop('disabled', true);
-
-									Stripe.card.createToken($form, stripeResponseHandler);
-
-									// Prevent the form from submitting with the default action
-									return false;
-										});
-									});
-				</script>
 	</head>
 	<body>
 		<div class="container"> <!--Whole Page Container-->
@@ -52,6 +12,7 @@
 					<img class="main_logo" src="/assets/images/hammer.gif" alt="no photo" />
 				</div>
 			</div>
+			<a href="/users/logout">safety logout</a>
             <div class="row grey lighten-4 z-depth-2">
                 <div class="col s12 col m10 offset-m1">
                     <h4 class="red-text text-darken-3" id="register_stripe">Before you can be a member...</h4>
@@ -83,25 +44,25 @@
         							<form action="/handler/create_customer" id="payment-form" method="post" role="form" style="display: block;">
         								<div class="input-field">
         									<label for="card-number">Credit Card Number</label>
-        									<input type="text" name="card-number" id="card-number" class="validate" maxlength="16" autocomplete="off"/>
+        									<input type="text" name="card-number" data-stripe="number" id="card-number" class="validate" maxlength="16" autocomplete="off"/>
         								</div>
                                         <div class="row">
                                             <div class="col s4">
                                                 <div class="input-field">
                 									<label for="cvc">CVC</label>
-                									<input type="text" name="cvc" id="cvc" maxlength="4" autocomplete="off" class="validate"/>
+                									<input type="text" name="cvc" data-stripe="cvc" id="cvc" maxlength="4" autocomplete="off" class="validate"/>
                 								</div>
                                             </div>
                                             <div class="col s4">
                 								<div class="input-field">
                                                     <label for="month">(MM)</label>
-                                                    <input type="text" maxlength="2" name="month" class=" validate card-expiry-month"/>
+                                                    <input type="text" maxlength="2" name="month" data-stripe="exp-month" class=" validate card-expiry-month"/>
                                                 </div>
                                             </div>
                                             <div class="col s4">
                 								<div class="input-field">
                                                     <label for="year">(YYYY)</label>
-                                                    <input type="text" maxlength="4" name="year" class="validate card-expiry-year center-align"/>
+                                                    <input type="text" maxlength="4" name="year" data-stripe="exp-year" class="validate card-expiry-year center-align"/>
                 								</div>
                                             </div>
                                         </div>
