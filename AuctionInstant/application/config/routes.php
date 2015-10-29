@@ -44,6 +44,7 @@ $route['/users/auction'] = "users";
 $route['/users/faq'] = "users/faq";
 $route['/users/dash/'] = "users/dash/";
 $route['/users/profile/(:any)'] = "users/dash/$1";
+$route['/auctions/update_bid'] = "auctions/update_bid";
 $route['404_override'] = '';
 
 
