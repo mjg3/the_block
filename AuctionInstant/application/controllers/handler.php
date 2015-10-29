@@ -15,13 +15,13 @@ public function create_customer() {
   );
 
   $stripe_id = $customer->id;
-  $this->session->set_userdata('id',15);
   $user_id   = $this->session->userdata['id'];
+  $this->session->set_userdata('stripe_id', $stripe_id);
   $this->load->model('user');
   // Attaches a stripe id to a given customer
   $this->user->update_billing($stripe_id, $user_id);
   $this->charge($user_id, '100');
-  redirect('users');
+  redirect('/');
 
 
 }

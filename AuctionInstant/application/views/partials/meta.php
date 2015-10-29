@@ -12,11 +12,14 @@
 <link href="/assets/css/styles.css" rel="stylesheet"/>
 
 <!-- Script Sources -->
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
 <script type="text/javascript" src="/assets/js/jquery.editinplace.js"></script>
 <script src="/assets/js/jquery.countdown.js"></script>
 <script src="/assets/js/jquery.countdown.min.js"></script>
 <script src="/assets/js/validations.js"></script>
 <script src="/assets/js/materialize.min.js"></script>
 <script src="/assets/js/materialize.js"></script>
+
 <script src="/assets/js/scripts.js"></script>
