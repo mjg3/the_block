@@ -133,13 +133,29 @@
 		public function dash(){
 			$user_id   = $this->session->userdata('id');
 			$user_info = $this->user->get_user_by_id($user_id);
+
 			$this->load->model('auction');
 			$purchases = $this->auction->purchased_products($user_id);
 			$sales     = $this->auction->sold_products($user_id);
+
+			// these ids are ids in the queue
+			$first_product  = $this->auction->for_sale();
+			$first_id = $first_product['id'];
+
+
 			$queues    = $this->auction->products_in_queue($user_id);
 
-			var_dump($sales);
-			$data = array('user_info' => $user_info);
+			foreach($queues as $keys => $values) {
+				$queues[$keys]['batting_order'] = $values['id'] - $first_id;
+			}
+
+			$data = array(
+				'user_info'  => $user_info,
+				'purchases'  => $purchases,
+				'sales' 		 => $sales,
+				'queues' 		 => $queues
+		);
+
 			$this->load->view('dash', $data);
 		}
 
