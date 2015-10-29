@@ -68,13 +68,13 @@
 	}
 
 	public function update_bid($bid_info){
-		$featured_queue = $this->db->get_where('queues', array('product_id', $bid_info['product_id']))->row_array();
+		// var_dump($bid_info);
 
-		$this->db->where('id', $featured_queue['id']);
-			$this->db->update('queues', array('time_end'=>$bid_info['time_end']));
-
-		$this->db->where('id', $bid_info['product_id']);
-			$this->db->update('products', array('selling_price'=>$bid_info['updated_price'], 'bidder_id'=>$bid_info['bidder_id']));
+		$sql = "UPDATE products
+				JOIN queues ON products.id=queues.product_id
+				SET products.bidder_id=?, queues.time_end=?, products.selling_price=?
+				WHERE queues.product_id=?";
+		return $this->db->query($sql, $bid_info);
 	}
 }
 

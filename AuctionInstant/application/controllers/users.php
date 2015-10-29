@@ -173,6 +173,21 @@
 			$data = ['user_info'=>$user_info, 'reviews'=>$reviews];
 			$this->load->view('profile', $data);
 		}
+
+		public function refresh(){
+			if($this->session->userdata('logged_in') == true &&
+			$this->session->userdata['stripe_id'] !== null )
+			{
+				$this->load->model('auction');
+				$product_id_holder = $this->auction->for_sale();
+				$product_id = $product_id_holder['product_id'];
+				$product_info = $this->auction->product_detail($product_id);
+
+				$shield = array('product_info' => $product_info);
+				$this->load->view('auction', $shield);
+			}
+		}
 	}
+
 
 ?>
