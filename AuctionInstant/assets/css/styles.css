@@ -1,12 +1,26 @@
 #feature_img
 {
-    max-width: 300px;
+    max-width: 100%;
+    height: auto;
+}
+body
+{
+    background: url('/assets/images/background_texture.gif') fixed;
+    background-repeat: repeat;
+    padding: 0px;
+    margin: 0;
 }
 .main_logo
 {
     width: 200px;
     margin-top: 20px;
     margin-bottom: -20px;
+}
+.small_logo
+{
+    width: 90px;
+    height: auto;
+    margin: 10px 0px;
 }
 .card
 {
@@ -25,9 +39,41 @@
 {
     background-color: #ee6e73;
 }
-
-
+.my_grey
+{
+    background-color: #e5e5e5;
+}
+.bottom
+{
+    margin-top: 10px;
+}
+.inline
+{
+    display: inline-block;
+}
+.dropdown-content li>span
+{
+    color: #ac1818;
+}
+input[type="text"]:focus:not([readonly]), textarea.materialize-textarea:focus:not([readonly])
+{
+    border-bottom: 1px solid black;
+    box-shadow: 0 1px 0 0 black;
+}
+.input-field .prefix.active
+{
+    color: black;
+}
+h6
+{
+    font-weight: bolder;
+}
+a
+{
+    color: #971f1f;
+}
 a:hover
 {
     cursor: pointer;
+    color: #6e1818;
 }

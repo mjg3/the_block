@@ -7,11 +7,17 @@
 			parent:: __construct();
 			// $this->output->enable_profiler(TRUE);
 			$this->load->model("user");
-			// $this->session->sess_destroy();
 		}
 
 		public function index() {
-			$this->load->view('stripe-test');
+			if($this->session->userdata('logged_in') == true)
+			{
+				redirect('/auctions');
+			}
+			else
+			{
+				$this->load->view('login');
+			}
 		}
 
 		public function logout()
@@ -58,14 +64,13 @@
 				$this->session->set_userdata('logged_in', true);
 				$this->session->set_userdata('user_id', $user_info['user_info']['user_id']);
 				$this->session->set_userdata('email', $user_info['user_info']['email']);
-		    $this->load->view('test');
+			    redirect('/');
 		    }
 		    else{
 		    	$errors = array(validation_errors());
 		    	$this->session->set_flashdata('errors', $errors);
 		    	redirect("/");
 		    }
-
 		}
 
 		function check_database($email)
@@ -107,6 +112,10 @@
 			);
 
 			$this->load->view('test', $shield);
+		}
+
+		public function faq(){
+			$this->load->view('faq');
 		}
 	}
 
