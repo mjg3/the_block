@@ -179,12 +179,16 @@
                                   <td><?=$values['min_price']?></td>
                                   <td><?php if ($values['batting_order'] == 1) { ?>
                                             You're on deck!
-<?php                               } else ?>
-                                     <?=$values['batting_order']?></td>
+<?php                               } else if($values['batting_order'] == 0) { ?>
+                                            Selling NOW!
+<?php                                    }
+                                        else {?>
+                                     <?=$values['batting_order']?> away</td>
                               </tr>
 <?php
                             }
                         }
+                    }
 ?>
 
                         </tbody>

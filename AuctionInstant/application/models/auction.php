@@ -20,6 +20,8 @@
 		public function product_detail($product_id) {
 			// get the product information for the provided id, and return
 			// an array of that information.
+
+
 			$product_information = $this->db->get_where('products', array('id' => $product_id))->result_array();
 			return $product_information;
 	}
@@ -59,10 +61,21 @@
 			JOIN products ON products.id = queues.product_id
 			WHERE queues.seller_id =?", $user_id)->result_array();
 
-			// $queued_items = $this->db->get_where('queues', array('seller_id' => $user_id))->result_array();
-			// return $queued_items;
 	}
 
+	public function get_time_end(){
+		return $this->db->query("SELECT time_end FROM queues")->row_array();
+	}
+
+	public function update_bid($bid_info){
+		$featured_queue = $this->db->get_where('queues', array('product_id', $bid_info['product_id']))->row_array();
+
+		$this->db->where('id', $featured_queue['id']);
+			$this->db->update('queues', array('time_end'=>$bid_info['time_end']));
+
+		$this->db->where('id', $bid_info['product_id']);
+			$this->db->update('products', array('selling_price'=>$bid_info['updated_price'], 'bidder_id'=>$bid_info['bidder_id']));
+	}
 }
 
 ?>
