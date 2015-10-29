@@ -53,12 +53,12 @@
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <form id="bid" class="input-field" method="post">
+                            <form id="bid" action="/auctions/update_bid" class="input-field" method="post">
                                 <div class="input-field">
                                     <select name="updated_price" class="grey-text text-lighten-1">
                                         <option value="" disabled selected>Your Bid ($USD)</option>
 <?php
-                                    for($i=20; $i<=2000; $i = $i + 5){?>
+                                    for($i=$product_info[0]['selling_price']+5; $i<=2000; $i = $i + 5){?>
                                         <option value="<?=$i?>"><?=$i?>.00</option>
 <?php
                                     }
