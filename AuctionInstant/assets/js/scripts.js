@@ -71,4 +71,7 @@ $(document).ready(function(){
     $('#modal1').on('modal-close', function (e) {
         $(this).find("input,textarea,select").val('').end();
     })
+    $('#modal2').on('modal-close', function (e) {
+        $(this).find("input,textarea,select").val('').end();
+    })
 });

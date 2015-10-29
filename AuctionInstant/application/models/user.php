@@ -70,17 +70,18 @@
 		return $this->db->query($query, $values);
 	}
 
-	//get user for showing purposes
-	public function get_user_by_email($email){
-		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at, rating
-								FROM users
-								WHERE email =?", $email)->row_array();
-	}
-	public function get_user_by_id($user_id) {
-		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at, rating
-								FROM users
-								WHERE id=?", $user_id)->row_array();
-	}
+		//get user for showing purposes
+		public function get_user_by_email($email){
+			return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at
+									FROM users
+									WHERE email =?", $email)->row_array();
+		}
+		public function get_user_by_id($user_id) {
+			return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at
+									FROM users
+									WHERE id=?", $user_id)->row_array();
+		}
+
 		public function purchased_product($winner_id) {
 			// won products will be a list of all proudcts that a user has been the last
 			// bidder on.
@@ -100,16 +101,26 @@
 			return $sold_products;
 		}
 
+	//Stuff for Stripe Info
 		public function update_billing($stripe_id, $user_id) {
 			$billing_info = array('stripe_id' => $stripe_id);
 			$this->db->where('id', $user_id);
 			$this->db->update('users', $billing_info);
 
-	}
+		}
+
 		public function get_customer_id($user_id){
 			$customer_info = $this->db->get_where('users', array('id' => $user_id))->result_array();
 			$customer_id   = $customer_info[0]['stripe_id'];
 			return $customer_id;
+		}
+
+	//Getting reviews for the profile page
+		public function get_profile_reviews($id){
+			return $this->db->query("SELECT review, reviews.created_at, reviews.rating, writers.first_name as first_name, writer_id
+									FROM reviews
+									JOIN users as writers ON reviews.writer_id = writers.id
+									WHERE user_id=?", $id)->result_array();
 		}
 }
 

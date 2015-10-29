@@ -10,7 +10,7 @@
         <div class="container">
             <nav>
                 <div class="nav-wrapper red darken-3">
-                    <a href="/"><img class="brand-logo left small_logo" src="/assets/images/hammer.gif"/></a>
+                    <a href="/"><img class="brand-logo left small_logo bump_right" src="/assets/images/hammer.gif"/></a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="/users/faq">FAQ</a></li>
@@ -26,7 +26,7 @@
             </nav> <!-- End of Nav Bar-->
             <div class="row">
                 <div class="col s 12">
-                    <h5>Welcome, <a href="/users/profile"><?=$user_info['first_name']?></a></h5>
+                    <h5>Welcome, <a href="/users/profile/<?=$user_info['id']?>"><?=$user_info['first_name']?></a></h5>
                 </div>
             </div> <!-- End Welcome Header-->
             <div class="row">
