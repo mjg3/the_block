@@ -139,7 +139,12 @@
 			$queues    = $this->auction->products_in_queue($user_id);
 
 			var_dump($sales);
-			$data = array('user_info' => $user_info);
+			$data = array(
+				'user_info'  => $user_info,
+				'purchases'  => $purchases,
+				'sales' 		 => $sales,
+				'queues' 		 => $queues
+		);
 			$this->load->view('dash', $data);
 		}
 

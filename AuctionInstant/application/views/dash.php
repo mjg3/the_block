@@ -42,6 +42,7 @@
                             </tr>
                         </thead>
                         <tbody>
+                          <?php var_dump($purchases); ?>
                             <tr>
                                 <td>hula hoop</td>
                                 <td>$25.99</td>
