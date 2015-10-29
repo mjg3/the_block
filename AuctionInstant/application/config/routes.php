@@ -43,7 +43,7 @@ $route["/users/logout"] = "users/logout";
 $route['/users/auction'] = "users";
 $route['/users/faq'] = "users/faq";
 $route['/users/dash/'] = "users/dash/";
-
+$route['/users/profile/(:any)'] = "users/dash/$1";
 $route['404_override'] = '';
 
 

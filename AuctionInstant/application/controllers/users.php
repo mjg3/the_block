@@ -130,9 +130,10 @@
 			$this->load->view('dash', $data);
 		}
 
-		public function profile(){
-			$user_info = $this->user->get_user_by_id($this->session->userdata('id'));
-			$data = ['user_info'=>$user_info];
+		public function profile($id){
+			$user_info = $this->user->get_user_by_id($id);
+			$reviews = $this->user->get_profile_reviews($id);
+			$data = ['user_info'=>$user_info, 'reviews'=>$reviews];
 			$this->load->view('profile', $data);
 		}
 	}

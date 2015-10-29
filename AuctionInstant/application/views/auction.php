@@ -30,7 +30,7 @@
             </div>
             <div class="row">
                 <div class="col s12 col m5 offset-m1">
-                    <img id="feature_img" class="responsive-img" src="/assets/images/featur_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/>
+                    <img id="feature_img" class="responsive-img" src="/assets/images/feature_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/>
 
                 </div>
                 <div class="col s12 col m5">

@@ -31,6 +31,7 @@ body
 {
     max-width: 100px;
     height: auto;
+    margin-top: 10px;
 }
 .profile_info
 {
@@ -94,4 +95,8 @@ a:hover
 {
     cursor: pointer;
     color: #6e1818;
+}
+.no-width
+{
+    width: 15px;
 }
