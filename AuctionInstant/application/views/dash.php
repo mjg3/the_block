@@ -42,25 +42,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                          <?php var_dump($purchases); ?>
+<?php                       if ($purchases == null) {
+?>
+                              <tr>
+                                <td colspan="4">Go buy some stuff, silly!</td>
+                              </tr>
+<?php                       }
+                            else
+                            {
+                              foreach($purchases as $key => $values)
+                              {
+?>
                             <tr>
-                                <td>hula hoop</td>
-                                <td>$25.99</td>
-                                <td>Matt</td>
-                                <td>TODAY!</td>
+                                <td><?=$values['product_name']?></td>
+                                <td><?=$values['bid_price']?></td>
+                                <td><a href="/users/profile/<?=$values['seller_id']?>"><?=$values['seller_name']?></a></td>
+                                <td><?=$values['date_sold']?></td>
                             </tr>
-                            <tr>
-                                <td>coffee</td>
-                                <td>$1.89</td>
-                                <td>Kelly</td>
-                                <td>Coffee o'clock</td>
-                            </tr>
-                            <tr>
-                                <td>Optimind Subscription</td>
-                                <td>$100</td>
-                                <td>Kelly</td>
-                                <td>12:00pm 10/10/2015</td>
-                            </tr>
+<?php                         } }
+?>
                         </tbody>
                     </table>
                 </div>
@@ -71,23 +71,29 @@
                             <tr>
                                 <th data-field="product_name">Product</th>
                                 <th data-field="bid_price">Bid</th>
-                                <th data-field="seller_name">Buyer</th>
+                                <th data-field="buyer_name">Buyer</th>
                                 <th data-field="date_sold">Date</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>lunch</td>
-                                <td>$15.66</td>
-                                <td>Kevin</td>
-                                <td>TODAY!</td>
-                            </tr>
-                            <tr>
-                                <td>dinner</td>
-                                <td>$20</td>
-                                <td>Kelly</td>
-                                <td>sushi time</td>
-                            </tr>
+<?php                   if($sales == null)
+                        {
+?>                      <tr><td colspan="4">You haven't sold anything!</td></tr>
+<?php                   }
+                        else
+                        {
+                          foreach($sales as $key => $values)
+                            {
+?>                             <tr>
+                                  <td><?=$values['product_name']?></td>
+                                  <td><?=$values['bid_price']?></td>
+                                  <td><a href="/users/profile/<?=$values['buyer_id']?>"><?=$values['buyer_name']?></a></td>
+                                  <td><?=$values['date_sold']?></td>
+                              </tr>
+<?php
+                            }
+                        }
+?>
                         </tbody>
                     </table>
                 </div>
@@ -121,7 +127,7 @@
                                         <div class="row">
                                             <div class="col s8">
                                                 <div class="input-field">
-                                                    <select class="grey-text text-lighten-1">
+                                                    <select name="starting_price" class="grey-text text-lighten-1">
                                                         <option value="" disabled selected>Starting Price ($USD)</option>
 <?php
                                                     for($i=5; $i<=2000; $i = $i + 5){?>
@@ -160,21 +166,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Watch</td>
-                                <td>$150</td>
-                                <td>auctioning now!</td>
-                            </tr>
-                            <tr>
-                                <td>iPad</td>
-                                <td>$100</td>
-                                <td>on deck</td>
-                            </tr>
-                            <tr>
-                                <td>Water Bottle</td>
-                                <td>$20</td>
-                                <td>2</td>
-                            </tr>
+<?php                   if($queues == null)
+                        {
+?>                      <tr><td colspan="3">You don't have anything in the queue!</td></tr>
+<?php                   }
+                        else
+                        {
+                          foreach($queues as $key => $values)
+                            {
+?>                             <tr>
+                                  <td><?=$values['product_name']?></td>
+                                  <td><?=$values['min_price']?></td>
+                                  <td><?php if ($values['batting_order'] == 1) { ?>
+                                            You're on deck!
+<?php                               } else ?>
+                                     <?=$values['batting_order']?></td>
+                              </tr>
+<?php
+                            }
+                        }
+?>
+
                         </tbody>
                     </table>
                 </div>

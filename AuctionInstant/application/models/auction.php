@@ -27,24 +27,40 @@
 	// returns the id of the product that is the first item in the queue
 	// and ready to be sold
 	public function for_sale(){
-			$query = 'SELECT product_id FROM queues ORDER BY id ASC LIMIT 1';
+			$query = 'SELECT product_id, id FROM queues ORDER BY id ASC LIMIT 1';
 			$product_id = $this->db->query($query)->row_array();
 			return $product_id;
 	}
 
 	public function purchased_products($user_id){
-			$won_items = $this->db->get_where('purchased_products', array('buyer_id' => $user_id))->result_array();
-			return $won_items;
+			return $this->db->query("SELECT purchased_products.name as product_name, purchased_products.price as bid_price,
+															sellers.first_name as seller_name, purchased_products.seller_id as seller_id, date_format(purchased_products.created_at, '%l:%i %p, %b %D, %Y') as date_sold
+															FROM purchased_products
+															JOIN users AS sellers ON purchased_products.seller_id = sellers.id
+															WHERE purchased_products.buyer_id =?", $user_id)->result_array();
+
 	}
 
 	public function sold_products($user_id){
-			$sold_items = $this->db->get_where('sold_products', array('seller_id' => $user_id))->result_array();
-			return $sold_items;
+			return $this->db->query("SELECT products.name as product_name, sold_products.price as bid_price,
+																buyers.first_name as buyer_name, sold_products.buyer_id as buyer_id,
+																date_format(sold_products.created_at, '%l:%i %p, %b %D, %Y') as date_sold
+																FROM sold_products
+																JOIN users as buyers ON sold_products.buyer_id = buyers.id
+																JOIN products ON sold_products.product_id = products.id
+																WHERE sold_products.seller_id = ?", $user_id)->result_array();
+
 	}
 
 	public function products_in_queue($user_id){
-			$queued_items = $this->db->get_where('queues', array('seller_id' => $user_id))->result_array();
-			return $queued_items;
+			return $this->db->query("SELECT products.name as product_name, products.starting_price as min_price,
+			queues.id as id
+			FROM queues
+			JOIN products ON products.id = queues.product_id
+			WHERE queues.seller_id =?", $user_id)->result_array();
+
+			// $queued_items = $this->db->get_where('queues', array('seller_id' => $user_id))->result_array();
+			// return $queued_items;
 	}
 
 }
