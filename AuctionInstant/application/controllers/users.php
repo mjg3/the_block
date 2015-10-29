@@ -139,24 +139,32 @@
 			$sales     = $this->auction->sold_products($user_id);
 
 			// these ids are ids in the queue
-			$first_product  = $this->auction->for_sale();
-			$first_id = $first_product['id'];
-
-
-			$queues    = $this->auction->products_in_queue($user_id);
-
-			foreach($queues as $keys => $values) {
-				$queues[$keys]['batting_order'] = $values['id'] - $first_id;
+			$queues = $this->auction->products_in_queue($user_id);
+			if($queues == null)
+			{
+				$data = array(
+					'user_info'  => $user_info,
+					'purchases'  => $purchases,
+					'sales' 		 => $sales,
+					'queues' 		 => $queues
+				);
 			}
-
-			$data = array(
-				'user_info'  => $user_info,
-				'purchases'  => $purchases,
-				'sales' 		 => $sales,
-				'queues' 		 => $queues
-		);
-
+				else
+				{
+					$first_product  = $this->auction->for_sale();
+					$first_id = $first_product['id'];
+					foreach($queues as $keys => $values) {
+						$queues[$keys]['batting_order'] = $values['id'] - $first_id;
+					}
+					$data = array(
+						'user_info'  => $user_info,
+						'purchases'  => $purchases,
+						'sales' 		 => $sales,
+						'queues' 		 => $queues
+					);
+				}
 			$this->load->view('dash', $data);
+
 		}
 
 		public function profile($id){

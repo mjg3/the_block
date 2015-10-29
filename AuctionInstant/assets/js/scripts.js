@@ -74,4 +74,23 @@ $(document).ready(function(){
     $('#modal2').on('modal-close', function (e) {
         $(this).find("input,textarea,select").val('').end();
     })
+
+//Auction Magic scripts
+
+       setInterval(function() {
+        //    $.get('/users');
+        //    $.post('/users');
+        //    console.log('hi');
+        //    var randomnumber = Math.floor(Math.random() * 100);
+        //    $('#show').text(
+        //            'I am getting refreshed every 3 seconds..! Random Number ==> '
+        //                    + randomnumber);
+       }, 1000);
+
+    // setInterval("updateMyContent();", 1000);
+
+    $('bid').submit(function(){
+        $.post('/auctions/update_bid');
+        return false;
+    })
 });

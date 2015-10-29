@@ -39,7 +39,7 @@
                                 </div>
                                 <div class="col s6">
                                     <h6 class="weight-lighten"><?=$user_info['first_name']?></h6>
-                                    <h6 class="weight-lighten">- <?=$user_info['created_at']?> -</h6>
+                                    <h6 class="weight-lighten"><?=$user_info['created_at']?></h6>
                                     <h6 class="weight-lighten">logged on!</h6>
                                 </div>
                             </div>

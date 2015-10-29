@@ -26,34 +26,36 @@
             <div class="row">
                 <div class="col s6 offset-s3">
                     <div id="clock" class="card-panel center-align big z-depth-5"></div>
+                    <div id="show">
+
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col s12 col m5 offset-m1">
-                    <img id="feature_img" class="responsive-img" src="/assets/images/feature_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/>
-                    <img src="<?=$product_info[0]['image']?>" id="feature_img">
-                    <!-- <img id="feature_img" class="responsive-img" src="/assets/images/featur_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/> -->
+                    <img id="feature_img" class="responsive-img" src="<?=$product_info[0]['image']?>" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/>
                 </div>
                 <div class="col s12 col m5">
                     <h5 id="feature_product_name"><?= $product_info[0]['name'] ?></h5>
                     <p id="feature_product_description">
                         <?= $product_info[0]['description'] ?>
                     </p>
-                    <h6 class="col s8 offset-s4">Seller: <a><?= $product_info[0]['seller_name'] ?></a></h6>
+                    <h6 class="col s8 offset-s4">Seller: <a href="/users/profile/<?=$product_info[0]['seller_id']?>"><?= $product_info[0]['seller_name'] ?></a></h6>
                     <div class="row">
                         <div class="col s4">
                             <h4>Price:</h4>
                         </div>
                         <div class="col s8">
-                            <h4><?=$product_info[0]['starting_price']?></h4>
+                            <h4>$<?=$product_info[0]['selling_price']?>.00</h4>
                         </div>
-                        <h6 class="col s8 offset-s4">Highest Bidder: <a>'bidder name'</a></h6>
+                        <h6 class="col s8 offset-s4">Highest Bidder: <a>Be the first!</a></h6>
+
                     </div>
                     <div class="row">
                         <div class="col s12">
-                            <form class="input-field" action="/auctions/update" method="post">
+                            <form id="bid" class="input-field" method="post">
                                 <div class="input-field">
-                                    <select class="grey-text text-lighten-1">
+                                    <select name="updated_price" class="grey-text text-lighten-1">
                                         <option value="" disabled selected>Your Bid ($USD)</option>
 <?php
                                     for($i=20; $i<=2000; $i = $i + 5){?>
@@ -63,6 +65,7 @@
 ?>
                                     </select>
                                 </div>
+                                <input type="hidden" name="product_id" value="<?= $product_info[0]['id'] ?>">
                                 <input class="btn right modal-close red darken-2" type="submit" value="Bid!">
                             </form>
                         </div>
