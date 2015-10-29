@@ -30,21 +30,22 @@
             </div>
             <div class="row">
                 <div class="col s12 col m5 offset-m1">
-                    <img id="feature_img" class="responsive-img" src="/assets/images/featur_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/>
+                    <img src="<?=$product_info[0]['image']?>" id="feature_img">
+                    <!-- <img id="feature_img" class="responsive-img" src="/assets/images/featur_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/> -->
 
                 </div>
                 <div class="col s12 col m5">
-                    <h5 id="feature_product_name">Product Name</h5>
+                    <h5 id="feature_product_name"><?= $product_info['name'] ?></h5>
                     <p id="feature_product_description">
-                        Description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                        <?= $product_info[0]['description'] ?>
                     </p>
-                    <h6 class="col s8 offset-s4">Seller: <a>'seller name'</a></h6>
+                    <h6 class="col s8 offset-s4">Seller: <a>$product_info['seller_name']</a></h6>
                     <div class="row">
                         <div class="col s4">
                             <h4>Price:</h4>
                         </div>
                         <div class="col s8">
-                            <h4>$15.00</h4>
+                            <h4><?=$product_info[0]['starting_price']?></h4>
                         </div>
                         <h6 class="col s8 offset-s4">Highest Bidder: <a>'bidder name'</a></h6>
                     </div>
