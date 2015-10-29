@@ -16,7 +16,7 @@
 			}
 			else
 			{
-				$this->load->view('stripe_registration');
+				$this->load->view('login');
 			}
 		}
 
@@ -64,7 +64,7 @@
 				$this->session->set_userdata('logged_in', true);
 				$this->session->set_userdata('user_id', $user_info['user_info']['user_id']);
 				$this->session->set_userdata('email', $user_info['user_info']['email']);
-		    	redirect('/');
+			    redirect('/');
 		    }
 		    else{
 		    	$errors = array(validation_errors());
