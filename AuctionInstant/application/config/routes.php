@@ -38,11 +38,11 @@
 |
 */
 
-$route['default_controller'] = "Users";
+$route['default_controller'] = "users";
+$route["/users/logout"] = "users/logout";
 $route['/auction'] = "Auctions";
 $route['/faq'] = "Users/faq";
 $route['/dash'] = "Users/dash";
-$route['/logout'] = "Users/logout";
 
 $route['404_override'] = '';
 

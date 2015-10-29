@@ -10,12 +10,16 @@
 		}
 
 		public function index() {
-			if($this->session->userdata('logged_in') == true)
+			if($this->session->userdata('logged_in') == true &&
+			$this->session->userdata['stripe_id'] != null )
 			{
-				redirect('/auctions');
+				$this->load->view('auction');
 			}
-			else
+			else if($this->session->userdata('logged_in') == true)
 			{
+				$this->load->view('stripe_registration');
+			}
+			else {
 				$this->load->view('login');
 			}
 		}
@@ -33,9 +37,10 @@
 		    if($result == "valid")
 		    {
 		    	$user_info = ['user_info'=>$this->user->get_user_by_email($this->input->post("email"))];
-		    	$this->session->set_userdata('user_id', $user_info['user_info']['user_id']);
+		    	$this->session->set_userdata('id', $user_info['user_info']['id']);
 		    	$this->session->set_userdata('logged_in', true);
 		    	$this->session->set_userdata('email', $user_info['user_info']['email']);
+					$this->session->set_userdata('stripe_id', $user_info['user_info']['stripe_id']);
 		    	redirect("/");
 		    }
 			else
@@ -62,9 +67,10 @@
 				$this->user->add_user($user_info);
 				$user_info = ['user_info' =>$this->user->get_user_by_email($this->input->post("email"))];
 				$this->session->set_userdata('logged_in', true);
-				$this->session->set_userdata('user_id', $user_info['user_info']['user_id']);
+				$this->session->set_userdata('id', $user_info['user_info']['id']);
 				$this->session->set_userdata('email', $user_info['user_info']['email']);
-			    redirect('/');
+				$this->session->set_userdata('stripe_id', null);
+			  $this->load->view('stripe_registration');
 		    }
 		    else{
 		    	$errors = array(validation_errors());

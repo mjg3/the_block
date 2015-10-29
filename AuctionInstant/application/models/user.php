@@ -71,12 +71,12 @@
 
 	//get user for showing purposes
 	public function get_user_by_email($email){
-		return $this->db->query("SELECT first_name, last_name, email, user_id
+		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id
 								FROM users
 								WHERE email =?", $email)->row_array();
 	}
 	public function get_user_by_id($user_id) {
-		return $this->db->query("SELECT first_name, last_name, email, user_id,
+		return $this->db->query("SELECT first_name, last_name, email, id, stripe_id
 								FROM users
 								WHERE user_id=?", $user_id)->row_array();
 	}
