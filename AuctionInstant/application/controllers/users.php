@@ -13,7 +13,13 @@
 			if($this->session->userdata('logged_in') == true &&
 			$this->session->userdata['stripe_id'] !== null )
 			{
-				$this->load->view('auction');
+				$this->load->model('auction');
+				$product_id_holder = $this->auction->for_sale();
+				$product_id = $product_id_holder['product_id'];
+				$product_info = $this->auction->product_detail($product_id);
+
+				$shield = array('product_info' => $product_info);
+				$this->load->view('auction', $shield);
 			}
 			else if($this->session->userdata('logged_in') == true)
 			{
@@ -125,8 +131,15 @@
 		}
 
 		public function dash(){
-			$user_info = $this->user->get_user_by_id($this->session->userdata('id'));
-			$data = ['user_info'=>$user_info];
+			$user_id   = $this->session->userdata('id');
+			$user_info = $this->user->get_user_by_id($user_id);
+			$this->load->model('auction');
+			$purchases = $this->auction->purchased_products($user_id);
+			$sales     = $this->auction->sold_products($user_id);
+			$queues    = $this->auction->products_in_queue($user_id);
+
+			var_dump($sales);
+			$data = array('user_info' => $user_info);
 			$this->load->view('dash', $data);
 		}
 

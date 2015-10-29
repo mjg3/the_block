@@ -105,7 +105,9 @@
                                 <div class="modal-content">
                                     <h5>Add Product to The Hammer</h5>
                                     <!--add product form-->
-                                    <form id="add_product_form" action="products/do_upload" method="post">
+                                    <?php $this->load->helper('form');
+                                    echo form_open_multipart('/products/do_upload');?>
+                                    <form id="add_product_form" action="/products/do_upload" method="post">
                                         <div class="input-field">
                                             <label for="name">Product Name</label>
                                             <input type="text" name="name">
