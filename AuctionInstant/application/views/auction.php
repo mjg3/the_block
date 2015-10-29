@@ -30,20 +30,16 @@
             </div>
             <div class="row">
                 <div class="col s12 col m5 offset-m1">
-<<<<<<< HEAD
                     <img id="feature_img" class="responsive-img" src="/assets/images/feature_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/>
-=======
                     <img src="<?=$product_info[0]['image']?>" id="feature_img">
                     <!-- <img id="feature_img" class="responsive-img" src="/assets/images/featur_product.gif" onerror='this.onerror = null; this.src="/assets/images/alt_feature.gif"' alt="No Product"/> -->
->>>>>>> c39c030f3cf1a291b9f5f5127a8817c972ff2cee
-
                 </div>
                 <div class="col s12 col m5">
-                    <h5 id="feature_product_name"><?= $product_info['name'] ?></h5>
+                    <h5 id="feature_product_name"><?= $product_info[0]['name'] ?></h5>
                     <p id="feature_product_description">
                         <?= $product_info[0]['description'] ?>
                     </p>
-                    <h6 class="col s8 offset-s4">Seller: <a>$product_info['seller_name']</a></h6>
+                    <h6 class="col s8 offset-s4">Seller: <a><?= $product_info[0]['seller_name'] ?></a></h6>
                     <div class="row">
                         <div class="col s4">
                             <h4>Price:</h4>
