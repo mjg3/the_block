@@ -20,8 +20,6 @@
 		public function product_detail($product_id) {
 			// get the product information for the provided id, and return
 			// an array of that information.
-
-
 			$product_information = $this->db->get_where('products', array('id' => $product_id))->result_array();
 			return $product_information;
 	}

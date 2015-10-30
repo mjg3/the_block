@@ -5,7 +5,6 @@
 		public function __construct()
 		{
 			parent:: __construct();
-			$this->output->enable_profiler(TRUE);
 			$this->load->model("user");
 		}
 
@@ -174,19 +173,35 @@
 			$this->load->view('profile', $data);
 		}
 
-		public function refresh(){
-			if($this->session->userdata('logged_in') == true &&
-			$this->session->userdata['stripe_id'] !== null )
-			{
-				$this->load->model('auction');
-				$product_id_holder = $this->auction->for_sale();
-				$product_id = $product_id_holder['product_id'];
-				$product_info = $this->auction->product_detail($product_id);
 
-				$shield = array('product_info' => $product_info);
-				$this->load->view('auction', $shield);
+			public function refresh(){
+      		if($this->session->userdata('logged_in') == true &&
+          $this->session->userdata['stripe_id'] !== null )
+          {
+              $this->load->model('auction');
+              $new_time     = $this->auction->get_time_end();
+              $time         = $new_time['time_end'];
+
+							$product_id_holder = $this->auction->for_sale();
+							$product_id = $product_id_holder['product_id'];
+							$product_info = $this->auction->product_detail($product_id);
+							$selling_price = $product_info[0]['selling_price'];
+							$high_bidder    = $product_info[0]['bidder_id'];
+
+							$this->load->model('user');
+							$high_bidder_info = $this->user->get_user_by_id($high_bidder);
+							$bidder_name = $high_bidder_info['first_name'];
+
+
+							$fresh_info    = array(
+								'time' => $time,
+							  'selling_price' => $selling_price,
+								'bidder_id'     => $high_bidder,
+								'bidder_name'   => $bidder_name
+							);
+              echo json_encode($fresh_info);
+          }
 			}
-		}
 	}
 
 

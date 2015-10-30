@@ -46,9 +46,9 @@
                             <h4>Price:</h4>
                         </div>
                         <div class="col s8">
-                            <h4>$<?=$product_info[0]['selling_price']?>.00</h4>
+                            <h4 id="current_price">$<?=$product_info[0]['selling_price']?>.00</h4>
                         </div>
-                        <h6 class="col s8 offset-s4">Highest Bidder: <a>Be the first!</a></h6>
+                        <h6 class="col s8 offset-s4">Highest Bidder: <a id="bidder_name">Be the first!</a></h6>
 
                     </div>
                     <div class="row">
