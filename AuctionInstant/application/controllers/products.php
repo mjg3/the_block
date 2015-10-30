@@ -10,7 +10,7 @@ class products extends CI_Controller {
 
 	function index()
 	{
-		$this->load->view('add_product', array('error' => ' ' ));
+		redirect("/");
 	}
 
 	function do_upload()
@@ -26,8 +26,9 @@ class products extends CI_Controller {
 		if ( ! $this->upload->do_upload())
 		{
 			$error = array('error' => $this->upload->display_errors());
-
-			$this->load->view('upload_form', $error);
+			$this->session->set_flashdata('errors', $error);
+			redirect("/users/dash");
+			// $this->load->view('upload_form', $error);
 		}
 		else
 		{
@@ -39,7 +40,7 @@ class products extends CI_Controller {
 			$seller_name = $seller_info['first_name'] . " ". $seller_info['last_name'];
 
 			$image = base_url() . 'uploads/' .$data['file_name'];
-			
+
 			$product_info = array(
 				'seller_id' => $seller_id,
 				'name'      => $this->input->post('name'),
