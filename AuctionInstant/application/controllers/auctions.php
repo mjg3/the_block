@@ -6,23 +6,33 @@
 			redirect('/');
 		}
 		public function update_bid(){
-			$updated_price = $this->input->post('updated_price'); //updated price
-			$product_id = $this->input->post('product_id');
-			$bidder_id = $this->session->userdata('id');
 			$this->load->model('auction');
-			$time = $this->auction->get_time_end();
-			$time_end = $time['time_end'];
-			$updated_time_end = $time_end+30;
-			$bid_info = array(
-					'bidder_id'=>$bidder_id,
-					'time_end'=>$time_end,
-					'updated_price'=>$updated_price,
-					'product_id'=>$product_id
-			);
-			$this->auction->update_bid($bid_info);
+			$result = $this->auction->validate_bid($this->input->post('updated_price'));
+
+		    if($result == "valid")
+		    {
+				$updated_price = $this->input->post('updated_price'); //updated price
+				$product_id = $this->input->post('product_id');
+				$bidder_id = $this->session->userdata('id');
+				$this->load->model('auction');
+				$time = $this->auction->get_time_end();
+				$time_end = $time['time_end'];
+				$updated_time_end = $time_end+30;
+				$bid_info = array(
+						'bidder_id'=>$bidder_id,
+						'time_end'=>$time_end,
+						'updated_price'=>$updated_price,
+						'product_id'=>$product_id
+				);
+				$this->auction->update_bid($bid_info);
+			}
+			else
+			{
+		    	$errors = array(validation_errors());
+		    	$this->session->set_flashdata('errors', $errors);
+		    	redirect("/");
+		    }
 			redirect('/');
 		}
-
 	}
-
 ?>

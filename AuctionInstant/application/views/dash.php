@@ -107,6 +107,9 @@
                         <div class="col s4 offset-s2">
                             <!-- Modal Trigger -->
                             <a class="btn modal-trigger red darken-4" href="#modal1">Add Product</a>
+                            <?php
+        						$this->load->view('partials/flash_messages.php');
+        					?>
                             <!-- Modal Structure -->
                             <div id="modal1" class="modal">
                                 <div class="modal-content">

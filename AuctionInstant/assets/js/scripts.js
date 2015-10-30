@@ -77,25 +77,21 @@ $(document).ready(function(){
 
 //Auction Magic scripts
 
-    //    setInterval(function() {
-        //    location.reload();
-    //        $.get('/users/refresh', null, function(res){
-    //            $('#show').text('this is working!');
-    //        });
-        //    console.log('hi');
-        //    var randomnumber = Math.floor(Math.random() * 100);
-        //    $('#show').text(
-        //            'I am getting refreshed every 3 seconds..! Random Number ==> '
-        //                    + randomnumber);
-    //    }, 1000);
+      setInterval(function() {
+        $.get('/users/refresh', function(res){
+              res = res.split("-");
+              res[0] = res[0] + "/" + res[1] + "/" + res[2];
+              res = res[0];
+              res = res.split(" ");
+              console.log(res);
+              var timeEnd = res[0];
+              console.log(timeEnd);
+              $("#clock").countdown(timeEnd, function(event) {
+                  $(this).html(event.strftime(' Time Left: %H:%M:%S'));
+              });
 
-    // setInterval("updateMyContent();", 1000);
+        }, "html");
+        }, 2000);
 
-    // $('#bid').submit(function(){
-    //     $.post('/auctions/update_bid', $(this).serialize(), function(res){
-    //         console.log('hi');
-    //     });
-    //     return false;
-    // })
 
 });

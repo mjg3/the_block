@@ -48,8 +48,17 @@
                         <div class="col s8">
                             <h4>$<?=$product_info[0]['selling_price']?>.00</h4>
                         </div>
-                        <h6 class="col s8 offset-s4">Highest Bidder: <a>Be the first!</a></h6>
-
+                        <h6 class="col s8 offset-s4">Highest Bidder:
+<?php                       if($bidder_name !== null)
+                            {
+?>                              <a href="/users/profile/<?=$product_info[0]['bidder_id']?>"><?=$bidder_name?>
+<?php                       }
+                                else
+                                {
+?>                                  <a>Be the first!
+<?php                           }
+?>
+                            </a></h6>
                     </div>
                     <div class="row">
                         <div class="col s12">
@@ -65,6 +74,9 @@
 ?>
                                     </select>
                                 </div>
+                                <?php
+            						$this->load->view('partials/flash_messages.php');
+            					?>
                                 <input type="hidden" name="product_id" value="<?= $product_info[0]['id'] ?>">
                                 <input class="btn right modal-close red darken-2" type="submit" value="Bid!">
                             </form>

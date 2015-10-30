@@ -64,27 +64,32 @@
 		    	return false;
 		    }
 		}
-		public function add_user($user_info) {
-		$query = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
-		$values = [$user_info['first_name'], $user_info["last_name"], $user_info['email'], $user_info['password'], '0'];
-		return $this->db->query($query, $values);
-	}
+
+		public function add_user($user_info)
+		{
+			$query = "INSERT INTO users (first_name, last_name, email, password) VALUES (?, ?, ?, ?)";
+			$values = [$user_info['first_name'], $user_info["last_name"], $user_info['email'], $user_info['password'], '0'];
+			return $this->db->query($query, $values);
+		}
 
 		//get user for showing purposes
-		public function get_user_by_email($email){
+		public function get_user_by_email($email)
+		{
 			return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at
 									FROM users
 									WHERE email =?", $email)->row_array();
 		}
-		public function get_user_by_id($user_id) {
+
+		public function get_user_by_id($user_id)
+		{
 			return $this->db->query("SELECT first_name, last_name, email, id, stripe_id, created_at
 									FROM users
 									WHERE id=?", $user_id)->row_array();
 		}
 
-		public function purchased_product($winner_id) {
-			// won products will be a list of all proudcts that a user has been the last
-			// bidder on.
+		public function purchased_product($winner_id)
+		{
+			// won products will be a list of all proudcts that a user has been the last bidder on.
 			$won_products =
 			$this->db->get_where('products',
 			array('bidder_id' => $winner_id))->result_array();
@@ -92,7 +97,8 @@
 			return $won_products;
 		}
 
-		public function sold_product($seller_id) {
+		public function sold_product($seller_id)
+		{
 			// sold products will be a list of all proudcts that a user has sold
 			$sold_products =
 			$this->db->get_where('products',
@@ -101,27 +107,38 @@
 			return $sold_products;
 		}
 
-	//Stuff for Stripe Info
-		public function update_billing($stripe_id, $user_id) {
+		//Stuff for Stripe Info
+		public function update_billing($stripe_id, $user_id)
+		{
 			$billing_info = array('stripe_id' => $stripe_id);
 			$this->db->where('id', $user_id);
 			$this->db->update('users', $billing_info);
 
 		}
 
-		public function get_customer_id($user_id){
+		public function get_customer_id($user_id)
+		{
 			$customer_info = $this->db->get_where('users', array('id' => $user_id))->result_array();
 			$customer_id   = $customer_info[0]['stripe_id'];
 			return $customer_id;
 		}
 
-	//Getting reviews for the profile page
-		public function get_profile_reviews($id){
-			return $this->db->query("SELECT review, reviews.created_at, reviews.rating, writers.first_name as first_name, writer_id
+		//Getting reviews for the profile page
+		public function get_profile_reviews($id)
+		{
+			return $this->db->query("SELECT review, reviews.created_at, reviews.rating,
+									writers.first_name as first_name, writer_id
 									FROM reviews
 									JOIN users as writers ON reviews.writer_id = writers.id
 									WHERE user_id=?", $id)->result_array();
 		}
-}
 
+		//add review
+		public function add_review($review_info)
+		{
+			$query = "INSERT INTO reviews (user_id, writer_id, review, rating, created_at) VALUES (?, ?, ?, ?, NOW())";
+			$values = [$review_info['user_id'], $review_info['writer_id'], $review_info['review'], $review_info['rating']];
+			return $this->db->query($query, $values);
+		}
+	}
 ?>
